@@ -1,5 +1,12 @@
 # 변경 기록
 
+## 0.4.1
+
+- 문서의 컴포넌트 검색 버튼을 실제 명령 팔레트로 교체
+- `⌘K`/`Ctrl+K`, 방향키, Enter와 Escape 키보드 탐색 지원
+- 검색 결과 선택 시 해당 문서 섹션으로 이동
+- 포털 렌더링으로 페이지 모션과 검색 팔레트의 stacking 충돌 제거
+
 ## 0.4.0
 
 - SearchField에 clear, loading, shortcut hint, size, disabled, icon/content 슬롯과 국제화 레이블 추가

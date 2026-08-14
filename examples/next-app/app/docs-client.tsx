@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import {
   Badge,
   FilterBar,
@@ -17,6 +18,156 @@ const operationRows = [
   ["070-xxxx-2468", "대표번호", "완료", "3분 41초", "12분 전"],
   ["010-xxxx-6302", "상담 접수", "통화 중", "32초", "14분 전"],
 ] as const;
+
+type DocsNavigation = ReadonlyArray<{
+  title: string;
+  items: ReadonlyArray<readonly [string, string]>;
+}>;
+
+export function ComponentSearch({
+  navigation,
+}: {
+  navigation: DocsNavigation;
+}) {
+  const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const [activeIndex, setActiveIndex] = useState(0);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const items = useMemo(
+    () =>
+      navigation.flatMap((group) =>
+        group.items.map(([label, href]) => ({
+          group: group.title,
+          label,
+          href,
+        })),
+      ),
+    [navigation],
+  );
+  const results = items.filter(({ group, label }) =>
+    `${group} ${label}`.toLowerCase().includes(query.trim().toLowerCase()),
+  );
+  const close = () => {
+    setOpen(false);
+    setQuery("");
+    setActiveIndex(0);
+  };
+  const select = (href: string) => {
+    window.location.hash = href;
+    close();
+  };
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setOpen((current) => !current);
+      } else if (event.key === "Escape") {
+        close();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+  useEffect(() => {
+    if (open) window.requestAnimationFrame(() => inputRef.current?.focus());
+  }, [open]);
+  useEffect(() => setActiveIndex(0), [query]);
+  return (
+    <>
+      <button
+        className="docs-search"
+        type="button"
+        onClick={() => setOpen(true)}
+      >
+        <span aria-hidden="true">⌕</span>
+        <span>컴포넌트 검색</span>
+        <kbd>⌘ K</kbd>
+      </button>
+      {open &&
+        createPortal(
+          <div
+            className="docs-command-backdrop"
+            role="presentation"
+            onMouseDown={close}
+          >
+            <div
+              className="docs-command"
+              role="dialog"
+              aria-modal="true"
+              aria-label="컴포넌트 검색"
+              onMouseDown={(event) => event.stopPropagation()}
+            >
+              <div className="docs-command-input">
+                <span aria-hidden="true">⌕</span>
+                <input
+                  ref={inputRef}
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === "ArrowDown") {
+                      event.preventDefault();
+                      setActiveIndex((current) =>
+                        Math.min(current + 1, Math.max(results.length - 1, 0)),
+                      );
+                    }
+                    if (event.key === "ArrowUp") {
+                      event.preventDefault();
+                      setActiveIndex((current) => Math.max(current - 1, 0));
+                    }
+                    if (event.key === "Enter" && results[activeIndex]) {
+                      event.preventDefault();
+                      select(results[activeIndex].href);
+                    }
+                  }}
+                  placeholder="컴포넌트 또는 토큰 검색"
+                  aria-label="검색어"
+                  aria-controls="docs-command-results"
+                  aria-activedescendant={
+                    results[activeIndex]
+                      ? `docs-command-${activeIndex}`
+                      : undefined
+                  }
+                />
+                <kbd>ESC</kbd>
+              </div>
+              <div
+                className="docs-command-results"
+                id="docs-command-results"
+                role="listbox"
+              >
+                {results.map((result, index) => (
+                  <button
+                    type="button"
+                    role="option"
+                    aria-selected={index === activeIndex}
+                    id={`docs-command-${index}`}
+                    key={result.href}
+                    onMouseEnter={() => setActiveIndex(index)}
+                    onClick={() => select(result.href)}
+                  >
+                    <span>{result.label}</span>
+                    <small>{result.group}</small>
+                    <i aria-hidden="true">↵</i>
+                  </button>
+                ))}
+                {results.length === 0 && (
+                  <div className="docs-command-empty">
+                    검색 결과가 없습니다.
+                  </div>
+                )}
+              </div>
+              <footer>
+                <span>↑↓ 이동</span>
+                <span>↵ 선택</span>
+                <span>ESC 닫기</span>
+              </footer>
+            </div>
+          </div>,
+          document.body,
+        )}
+    </>
+  );
+}
 
 export function OperationsExplorer() {
   const [query, setQuery] = useState("");
@@ -157,10 +308,7 @@ export function CodeBlock({
 export function MobileNavigation({
   navigation,
 }: {
-  navigation: ReadonlyArray<{
-    title: string;
-    items: ReadonlyArray<readonly [string, string]>;
-  }>;
+  navigation: DocsNavigation;
 }) {
   const [open, setOpen] = useState(false);
   return (
