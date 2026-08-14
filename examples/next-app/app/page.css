@@ -907,6 +907,14 @@ svg {
 .dashboard-demo .component-stage {
   display: block;
 }
+.dashboard-components-stage {
+  display: grid;
+  gap: 20px;
+  padding: 28px;
+  border: 1px solid var(--co-color-line);
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--co-color-canvas) 88%, #fff);
+}
 .stat-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1359,6 +1367,11 @@ svg {
   }
   .component-stage {
     padding: 22px 17px;
+  }
+  .dashboard-components-stage {
+    gap: 14px;
+    padding: 14px;
+    border-radius: 18px;
   }
   .component-demo-heading {
     padding: 0 16px;

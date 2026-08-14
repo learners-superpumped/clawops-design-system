@@ -8,13 +8,26 @@ import {
   ButtonLink,
   Callout,
   Card,
+  DataTable,
+  DataTableBody,
+  DataTableCell,
+  DataTableHead,
+  DataTableHeader,
+  DataTableRow,
+  EmptyState,
   Field,
   Grid,
   IconButton,
   Input,
   Progress,
   Pagination,
+  PageHeader,
   SearchField,
+  SectionCard,
+  SectionCardDescription,
+  SectionCardHeader,
+  SectionCardHeading,
+  SectionCardTitle,
   Separator,
   Skeleton,
   Spinner,
@@ -25,6 +38,8 @@ import {
   Textarea,
   Theme,
   Tooltip,
+  UsageMeterList,
+  ActionLink,
 } from "@teamlearners/clawops-design-system";
 
 import {
@@ -57,6 +72,7 @@ const navigation = [
       ["버튼", "#buttons"],
       ["입력", "#forms"],
       ["데이터 표시", "#data-display"],
+      ["대시보드", "#dashboard-components"],
       ["검색과 필터", "#data-navigation"],
       ["피드백", "#feedback"],
       ["인터랙션", "#interactive"],
@@ -192,7 +208,7 @@ export default function Page() {
         </nav>
         <div className="docs-top-actions">
           <Badge tone="success" dot>
-            v0.5.4
+            v0.6.0
           </Badge>
           <MobileNavigation navigation={navigation} />
         </div>
@@ -310,21 +326,21 @@ export default function Page() {
                   id: "npm",
                   label: "npm",
                   content: (
-                    <CodeBlock code="npm install git+https://github.com/learners-superpumped/clawops-design-system.git#v0.5.4" />
+                    <CodeBlock code="npm install git+https://github.com/learners-superpumped/clawops-design-system.git#v0.6.0" />
                   ),
                 },
                 {
                   id: "pnpm",
                   label: "pnpm",
                   content: (
-                    <CodeBlock code="pnpm add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.5.4" />
+                    <CodeBlock code="pnpm add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.6.0" />
                   ),
                 },
                 {
                   id: "yarn",
                   label: "yarn",
                   content: (
-                    <CodeBlock code="yarn add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.5.4" />
+                    <CodeBlock code="yarn add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.6.0" />
                   ),
                 },
               ]}
@@ -580,6 +596,177 @@ export default function App() {
                   </div>
                 </div>
               </Demo>
+            </div>
+          </Section>
+
+          <Section
+            id="dashboard-components"
+            eyebrow="COMPONENTS · DASHBOARD"
+            title="운영 화면을 하나의 밀도로."
+            description="페이지 제목, 섹션 카드, 사용량, 표와 빈 상태를 같은 정보 위계로 조합합니다."
+          >
+            <div className="dashboard-components-stage">
+              <PageHeader
+                eyebrow="오늘의 운영"
+                title="대시보드"
+                description="최근 활동과 이번 달 사용량을 확인하세요."
+                actions={<Button size="sm">새 전화</Button>}
+              />
+
+              <SectionCard>
+                <SectionCardHeader>
+                  <SectionCardHeading>
+                    <SectionCardTitle>이번 달 사용량</SectionCardTitle>
+                    <SectionCardDescription>
+                      8월 1일–31일 기준
+                    </SectionCardDescription>
+                  </SectionCardHeading>
+                  <ActionLink href="#dashboard-components">
+                    요금 보기
+                  </ActionLink>
+                </SectionCardHeader>
+                <UsageMeterList
+                  groups={[
+                    {
+                      key: "voice",
+                      label: "음성",
+                      items: [
+                        {
+                          key: "outbound",
+                          label: "발신 통화",
+                          used: 684,
+                          limit: 1000,
+                          unit: "분",
+                        },
+                        {
+                          key: "inbound",
+                          label: "수신 통화",
+                          used: 1284,
+                          limit: 10000,
+                          unit: "분",
+                        },
+                      ],
+                    },
+                    {
+                      key: "message",
+                      label: "메시지",
+                      items: [
+                        {
+                          key: "sms",
+                          label: "SMS",
+                          used: 248,
+                          limit: 300,
+                          unit: "건",
+                        },
+                        {
+                          key: "mms",
+                          label: "MMS",
+                          used: 7,
+                          limit: null,
+                          unit: "건",
+                          hint: "사용한 만큼만 청구",
+                        },
+                      ],
+                    },
+                  ]}
+                />
+              </SectionCard>
+
+              <SectionCard>
+                <SectionCardHeader>
+                  <SectionCardHeading>
+                    <SectionCardTitle>최근 통화</SectionCardTitle>
+                    <SectionCardDescription>최신 3건</SectionCardDescription>
+                  </SectionCardHeading>
+                  <ActionLink href="#dashboard-components">
+                    전체 보기
+                  </ActionLink>
+                </SectionCardHeader>
+                <DataTable label="최근 통화" minWidth={680}>
+                  <DataTableHeader>
+                    <DataTableRow>
+                      <DataTableHead>방향</DataTableHead>
+                      <DataTableHead>발신</DataTableHead>
+                      <DataTableHead>수신</DataTableHead>
+                      <DataTableHead>상태</DataTableHead>
+                      <DataTableHead>통화시간</DataTableHead>
+                      <DataTableHead>시간</DataTableHead>
+                    </DataTableRow>
+                  </DataTableHeader>
+                  <DataTableBody>
+                    {[
+                      [
+                        "수신",
+                        "070-xxxx-8010",
+                        "010-xxxx-4821",
+                        "완료",
+                        "2분 14초",
+                        "방금 전",
+                      ],
+                      [
+                        "발신",
+                        "070-xxxx-8010",
+                        "010-xxxx-1290",
+                        "통화 중",
+                        "1분 08초",
+                        "1분 전",
+                      ],
+                      [
+                        "수신",
+                        "070-xxxx-8010",
+                        "010-xxxx-7754",
+                        "실패",
+                        "12초",
+                        "8분 전",
+                      ],
+                    ].map((row) => (
+                      <DataTableRow
+                        interactive
+                        key={`${row[1]}-${row[2]}-${row[5]}`}
+                      >
+                        {row.map((cell, index) => (
+                          <DataTableCell key={`${cell}-${index}`}>
+                            {index === 3 ? (
+                              <Badge
+                                tone={
+                                  cell === "완료"
+                                    ? "success"
+                                    : cell === "실패"
+                                      ? "danger"
+                                      : "accent"
+                                }
+                                dot
+                              >
+                                {cell}
+                              </Badge>
+                            ) : (
+                              cell
+                            )}
+                          </DataTableCell>
+                        ))}
+                      </DataTableRow>
+                    ))}
+                  </DataTableBody>
+                </DataTable>
+              </SectionCard>
+
+              <SectionCard>
+                <EmptyState
+                  compact
+                  icon={
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M6 4.5h12v15H6zM9 8h6M9 11.5h6M9 15h3" />
+                    </svg>
+                  }
+                  title="아직 메시지 기록이 없습니다"
+                  description="첫 메시지를 보내면 최근 활동이 여기에 표시됩니다."
+                  actions={
+                    <Button size="sm" variant="secondary">
+                      메시지 보내기
+                    </Button>
+                  }
+                />
+              </SectionCard>
             </div>
           </Section>
 

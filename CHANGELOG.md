@@ -1,5 +1,11 @@
 # 변경 기록
 
+## 0.6.0
+
+- `PageHeader`, `SectionCard`, `ActionLink`, `DataTable`, `EmptyState`, `UsageMeterList` 대시보드 조합 컴포넌트 추가
+- 사용량, 최근 활동, 빈 상태를 함께 보여주는 반응형 대시보드 예제 추가
+- 표 스크롤 영역과 사용량 진행 상태에 접근성 시맨틱 적용
+
 ## 0.5.4
 
 - Drawer 포털 내부에 독립적인 border-box 규칙을 적용해 가로 스크롤 제거

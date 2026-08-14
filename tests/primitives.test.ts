@@ -3,20 +3,36 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 
 import {
+  ActionLink,
   Badge,
   Button,
   Card,
+  DataTable,
+  DataTableBody,
+  DataTableCell,
+  DataTableHead,
+  DataTableHeader,
+  DataTableRow,
   DrawerNavChevron,
   DrawerNavIcon,
   DrawerNavItem,
   DrawerNavigation,
   DrawerNavSubmenu,
   DrawerNavText,
+  EmptyState,
   Field,
   FilterChip,
   Input,
   Pagination,
+  PageHeader,
   SearchField,
+  SectionCard,
+  SectionCardBody,
+  SectionCardDescription,
+  SectionCardHeader,
+  SectionCardHeading,
+  SectionCardTitle,
+  UsageMeterList,
   getPaginationItems,
   tokens,
 } from "../src/index.js";
@@ -140,5 +156,115 @@ describe("design system primitives", () => {
     expect(markup).toContain('data-state="open"');
     expect(markup).toContain("co-drawer-nav__item--nested");
     expect(markup).toContain("co-drawer-nav__chevron is-open");
+  });
+
+  it("composes dashboard page headers and section cards", () => {
+    const markup = renderToStaticMarkup(
+      createElement(
+        "main",
+        null,
+        createElement(PageHeader, {
+          eyebrow: "운영",
+          title: "대시보드",
+          description: "오늘의 전화 운영 현황입니다.",
+          actions: createElement(ActionLink, { href: "/calls" }, "전체 통화"),
+        }),
+        createElement(
+          SectionCard,
+          null,
+          createElement(
+            SectionCardHeader,
+            null,
+            createElement(
+              SectionCardHeading,
+              null,
+              createElement(SectionCardTitle, null, "최근 통화"),
+              createElement(SectionCardDescription, null, "최신 연결 상태"),
+            ),
+          ),
+          createElement(SectionCardBody, null, "내용"),
+        ),
+      ),
+    );
+
+    expect(markup).toContain("co-page-header");
+    expect(markup).toContain("co-action-link");
+    expect(markup).toContain("co-section-card__title");
+    expect(markup).toContain("오늘의 전화 운영 현황입니다.");
+  });
+
+  it("renders accessible dashboard tables and empty states", () => {
+    const markup = renderToStaticMarkup(
+      createElement(
+        "div",
+        null,
+        createElement(
+          DataTable,
+          { label: "최근 통화", minWidth: 480 },
+          createElement(
+            DataTableHeader,
+            null,
+            createElement(
+              DataTableRow,
+              null,
+              createElement(DataTableHead, null, "전화번호"),
+            ),
+          ),
+          createElement(
+            DataTableBody,
+            null,
+            createElement(
+              DataTableRow,
+              { selected: true },
+              createElement(DataTableCell, null, "070-0000-0000"),
+            ),
+          ),
+        ),
+        createElement(EmptyState, {
+          title: "통화 기록이 없습니다",
+          description: "첫 통화를 연결해 보세요.",
+          compact: true,
+        }),
+      ),
+    );
+
+    expect(markup).toContain('role="region"');
+    expect(markup).toContain('aria-label="최근 통화"');
+    expect(markup).toContain('aria-selected="true"');
+    expect(markup).toContain("co-empty-state--compact");
+  });
+
+  it("renders grouped usage meters with progress semantics", () => {
+    const markup = renderToStaticMarkup(
+      createElement(UsageMeterList, {
+        groups: [
+          {
+            key: "voice",
+            label: "음성",
+            items: [
+              {
+                key: "outbound",
+                label: "발신",
+                used: 80,
+                limit: 100,
+                unit: "분",
+              },
+              {
+                key: "inbound",
+                label: "수신",
+                used: 20,
+                limit: null,
+                unit: "분",
+              },
+            ],
+          },
+        ],
+      }),
+    );
+
+    expect(markup).toContain('role="progressbar"');
+    expect(markup).toContain('aria-valuenow="80"');
+    expect(markup).toContain("co-usage-meter__fill--warning");
+    expect(markup).toContain("무제한");
   });
 });
