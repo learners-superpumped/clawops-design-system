@@ -4,6 +4,12 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   Badge,
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
   FilterBar,
   FilterChip,
   Pagination,
@@ -312,18 +318,20 @@ export function MobileNavigation({
 }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="mobile-navigation">
-      <button
-        type="button"
-        aria-label="문서 메뉴"
-        aria-expanded={open}
-        onClick={() => setOpen(!open)}
-      >
-        <i />
-        <i />
-      </button>
-      {open && (
-        <div className="mobile-navigation-panel">
+    <Drawer open={open} onOpenChange={setOpen}>
+      <div className="mobile-navigation">
+        <DrawerTrigger asChild>
+          <button type="button" aria-label="문서 메뉴">
+            <i />
+            <i />
+          </button>
+        </DrawerTrigger>
+      </div>
+      <DrawerContent side="right" size="sm" className="mobile-navigation-panel">
+        <DrawerHeader>
+          <DrawerTitle>컴포넌트 둘러보기</DrawerTitle>
+        </DrawerHeader>
+        <DrawerBody>
           {navigation.map((group) => (
             <nav key={group.title}>
               <strong>{group.title}</strong>
@@ -334,8 +342,8 @@ export function MobileNavigation({
               ))}
             </nav>
           ))}
-        </div>
-      )}
-    </div>
+        </DrawerBody>
+      </DrawerContent>
+    </Drawer>
   );
 }

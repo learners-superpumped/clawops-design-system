@@ -1244,20 +1244,12 @@ svg {
     background: #24314a;
   }
   .mobile-navigation-panel {
-    position: fixed;
-    z-index: 60;
-    top: 64px;
-    left: 0;
-    right: 0;
-    max-height: calc(100svh - 64px);
+    background: rgba(247, 249, 252, 0.96);
+  }
+  .mobile-navigation-panel .co-drawer__body {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    padding: 24px;
-    overflow: auto;
-    border-bottom: 1px solid var(--co-color-line);
-    background: rgba(247, 249, 252, 0.98);
-    box-shadow: 0 20px 40px rgba(40, 59, 91, 0.12);
+    align-content: start;
+    gap: 28px;
   }
   .mobile-navigation-panel nav {
     display: grid;
@@ -1447,9 +1439,6 @@ svg {
   }
   .docs-code pre {
     font-size: 10px;
-  }
-  .mobile-navigation-panel {
-    grid-template-columns: 1fr;
   }
 }
 @media (prefers-reduced-motion: reduce) {

@@ -941,6 +941,207 @@
   color: var(--co-color-ink);
 }
 
+.co-drawer__overlay {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background: rgba(13, 24, 43, 0.44);
+  backdrop-filter: blur(6px);
+  animation: co-drawer-fade-in 220ms var(--co-ease) both;
+}
+.co-drawer__overlay[data-state="closed"] {
+  animation-name: co-drawer-fade-out;
+}
+.co-drawer__content {
+  position: fixed;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  outline: none;
+  background: rgba(250, 252, 255, 0.94);
+  color: var(--co-color-ink);
+  box-shadow: 0 28px 80px rgba(18, 38, 72, 0.22);
+  backdrop-filter: blur(24px) saturate(1.14);
+  animation-duration: 320ms;
+  animation-timing-function: var(--co-ease);
+  animation-fill-mode: both;
+}
+.co-drawer__content--left,
+.co-drawer__content--right {
+  inset-block: 0;
+  width: min(var(--co-drawer-width, 420px), calc(100vw - 24px));
+}
+.co-drawer__content--left {
+  left: 0;
+  border-radius: 0 22px 22px 0;
+  animation-name: co-drawer-in-left;
+}
+.co-drawer__content--right {
+  right: 0;
+  border-radius: 22px 0 0 22px;
+  animation-name: co-drawer-in-right;
+}
+.co-drawer__content--top,
+.co-drawer__content--bottom {
+  inset-inline: 0;
+  max-height: calc(100dvh - 24px);
+}
+.co-drawer__content--top {
+  top: 0;
+  border-radius: 0 0 22px 22px;
+  animation-name: co-drawer-in-top;
+}
+.co-drawer__content--bottom {
+  bottom: 0;
+  border-radius: 22px 22px 0 0;
+  animation-name: co-drawer-in-bottom;
+}
+.co-drawer__content--left[data-state="closed"] {
+  animation-name: co-drawer-out-left;
+}
+.co-drawer__content--right[data-state="closed"] {
+  animation-name: co-drawer-out-right;
+}
+.co-drawer__content--top[data-state="closed"] {
+  animation-name: co-drawer-out-top;
+}
+.co-drawer__content--bottom[data-state="closed"] {
+  animation-name: co-drawer-out-bottom;
+}
+.co-drawer__content--sm {
+  --co-drawer-width: 340px;
+}
+.co-drawer__content--md {
+  --co-drawer-width: 420px;
+}
+.co-drawer__content--lg {
+  --co-drawer-width: 560px;
+}
+.co-drawer__content--full {
+  --co-drawer-width: 100vw;
+}
+.co-drawer__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 40px;
+  height: 40px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid var(--co-color-line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.74);
+  color: var(--co-color-muted-strong);
+  cursor: pointer;
+  transition:
+    background var(--co-motion-fast),
+    color var(--co-motion-fast),
+    transform var(--co-motion-fast);
+}
+.co-drawer__close:hover {
+  background: #fff;
+  color: var(--co-color-ink);
+  transform: translateY(-1px);
+}
+.co-drawer__close:focus-visible {
+  outline: 3px solid rgba(59, 111, 245, 0.28);
+  outline-offset: 2px;
+}
+.co-drawer__close svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+}
+.co-drawer__header {
+  flex: none;
+  padding: 24px 72px 20px 24px;
+  border-bottom: 1px solid var(--co-color-line);
+}
+.co-drawer__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 760;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+}
+.co-drawer__description {
+  margin: 7px 0 0;
+  color: var(--co-color-muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.co-drawer__body {
+  min-height: 0;
+  flex: 1;
+  overflow: auto;
+  padding: 24px;
+  overscroll-behavior: contain;
+}
+.co-drawer__footer {
+  flex: none;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 24px max(16px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--co-color-line);
+  background: rgba(255, 255, 255, 0.54);
+}
+@keyframes co-drawer-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes co-drawer-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes co-drawer-in-left {
+  from {
+    transform: translateX(-102%);
+  }
+}
+@keyframes co-drawer-out-left {
+  to {
+    transform: translateX(-102%);
+  }
+}
+@keyframes co-drawer-in-right {
+  from {
+    transform: translateX(102%);
+  }
+}
+@keyframes co-drawer-out-right {
+  to {
+    transform: translateX(102%);
+  }
+}
+@keyframes co-drawer-in-top {
+  from {
+    transform: translateY(-102%);
+  }
+}
+@keyframes co-drawer-out-top {
+  to {
+    transform: translateY(-102%);
+  }
+}
+@keyframes co-drawer-in-bottom {
+  from {
+    transform: translateY(102%);
+  }
+}
+@keyframes co-drawer-out-bottom {
+  to {
+    transform: translateY(102%);
+  }
+}
+
 @media (max-width: 760px) {
   .co-container {
     width: min(100% - 32px, var(--co-container));
