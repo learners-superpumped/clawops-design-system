@@ -1,0 +1,44 @@
+html,
+body {
+  margin: 0;
+}
+
+.preview {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+.preview-ambient {
+  top: -180px;
+  right: -180px;
+}
+
+.preview-container {
+  position: relative;
+  z-index: 1;
+  padding-block: 112px;
+}
+
+.preview .co-section-heading {
+  margin-bottom: 56px;
+}
+
+.preview-card-title {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: -0.035em;
+}
+
+.preview-card-copy {
+  margin: 0;
+  color: var(--co-color-muted);
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+@media (max-width: 760px) {
+  .preview-container {
+    padding-block: 72px;
+  }
+}

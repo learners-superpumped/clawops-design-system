@@ -1,0 +1,41 @@
+/** CSS custom-property references for use in inline styles and charts. */
+export const tokens = {
+  color: {
+    canvas: "var(--co-color-canvas)",
+    canvasSubtle: "var(--co-color-canvas-subtle)",
+    surface: "var(--co-color-surface)",
+    surfaceStrong: "var(--co-color-surface-strong)",
+    ink: "var(--co-color-ink)",
+    inkSoft: "var(--co-color-ink-soft)",
+    muted: "var(--co-color-muted)",
+    primary: "var(--co-color-primary)",
+    success: "var(--co-color-success)",
+    danger: "var(--co-color-danger)",
+    line: "var(--co-color-line)",
+  },
+  radius: {
+    sm: "var(--co-radius-sm)",
+    md: "var(--co-radius-md)",
+    lg: "var(--co-radius-lg)",
+    xl: "var(--co-radius-xl)",
+    full: "var(--co-radius-full)",
+  },
+  shadow: {
+    sm: "var(--co-shadow-sm)",
+    md: "var(--co-shadow-md)",
+    lg: "var(--co-shadow-lg)",
+  },
+  space: {
+    1: "var(--co-space-1)",
+    2: "var(--co-space-2)",
+    3: "var(--co-space-3)",
+    4: "var(--co-space-4)",
+    5: "var(--co-space-5)",
+    6: "var(--co-space-6)",
+    8: "var(--co-space-8)",
+    10: "var(--co-space-10)",
+    12: "var(--co-space-12)",
+    16: "var(--co-space-16)",
+    20: "var(--co-space-20)",
+  },
+} as const;
