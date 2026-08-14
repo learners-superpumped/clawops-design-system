@@ -1,5 +1,9 @@
 # 변경 기록
 
+## 0.6.1
+
+- `SectionCard`에 디자인 시스템 글래스 블러와 표면 그림자를 적용해 실제 블루 글래스 계층을 완성
+
 ## 0.6.0
 
 - `PageHeader`, `SectionCard`, `ActionLink`, `DataTable`, `EmptyState`, `UsageMeterList` 대시보드 조합 컴포넌트 추가

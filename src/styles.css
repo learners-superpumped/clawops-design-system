@@ -1366,7 +1366,8 @@
   border: 1px solid var(--co-color-line);
   border-radius: 16px;
   background: var(--co-color-surface);
-  box-shadow: 0 1px 2px rgba(26, 39, 64, 0.025);
+  box-shadow: var(--co-shadow-sm);
+  backdrop-filter: var(--co-glass-blur);
 }
 .co-section-card__header {
   min-height: 64px;
