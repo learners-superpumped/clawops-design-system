@@ -248,6 +248,9 @@ svg {
   gap: 10px;
   margin-top: 30px;
 }
+.docs-hero-actions a.co-button--accent {
+  color: #fff;
+}
 .docs-hero-actions svg {
   width: 16px;
 }
