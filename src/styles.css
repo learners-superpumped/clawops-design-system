@@ -159,6 +159,11 @@
   background: rgba(229, 248, 237, 0.76);
   color: #2f8653;
 }
+.co-badge--danger {
+  border-color: rgba(210, 68, 74, 0.18);
+  background: rgba(255, 235, 236, 0.78);
+  color: #b23e47;
+}
 .co-badge__dot {
   width: 7px;
   height: 7px;
@@ -696,6 +701,155 @@
   animation: co-panel-in var(--co-motion-base) var(--co-ease) both;
 }
 
+.co-search-field {
+  min-width: 220px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  gap: var(--co-space-3);
+  padding: 0 14px;
+  border: 1px solid var(--co-color-line-strong);
+  border-radius: var(--co-radius-md);
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--co-color-muted);
+  box-shadow: 0 1px 2px rgba(19, 32, 55, 0.03);
+  transition:
+    border-color var(--co-motion-fast) var(--co-ease),
+    box-shadow var(--co-motion-fast) var(--co-ease),
+    background var(--co-motion-fast) var(--co-ease);
+}
+.co-search-field:focus-within {
+  border-color: var(--co-color-primary);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(59, 111, 245, 0.12);
+}
+.co-search-field svg {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+.co-search-field input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--co-color-ink);
+  font: inherit;
+  font-size: 14px;
+}
+.co-search-field input::placeholder {
+  color: var(--co-color-subtle);
+}
+.co-search-field input::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+.co-filter-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--co-space-2);
+}
+.co-filter-chip {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 12px;
+  border: 1px solid var(--co-color-line-strong);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.74);
+  color: var(--co-color-muted-strong);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  transition:
+    transform var(--co-motion-fast) var(--co-ease),
+    border-color var(--co-motion-fast) var(--co-ease),
+    background var(--co-motion-fast) var(--co-ease);
+}
+.co-filter-chip:hover {
+  border-color: rgba(59, 111, 245, 0.4);
+  transform: translateY(-1px);
+}
+.co-filter-chip.is-selected {
+  border-color: rgba(59, 111, 245, 0.28);
+  background: var(--co-color-primary-soft);
+  color: var(--co-color-primary-strong);
+}
+.co-filter-chip__icon {
+  display: inline-grid;
+  place-items: center;
+}
+.co-filter-chip__count {
+  min-width: 20px;
+  height: 20px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: rgba(28, 49, 84, 0.07);
+  font-size: 11px;
+}
+.co-filter-chip.is-selected .co-filter-chip__count {
+  background: rgba(59, 111, 245, 0.14);
+}
+
+.co-pagination {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.co-pagination button {
+  width: 36px;
+  height: 36px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--co-color-muted-strong);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 680;
+  cursor: pointer;
+  transition:
+    background var(--co-motion-fast) var(--co-ease),
+    border-color var(--co-motion-fast) var(--co-ease),
+    color var(--co-motion-fast) var(--co-ease);
+}
+.co-pagination button:hover:not(:disabled) {
+  border-color: var(--co-color-line-strong);
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--co-color-ink);
+}
+.co-pagination button[aria-current="page"] {
+  border-color: var(--co-color-primary);
+  background: var(--co-color-primary);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(59, 111, 245, 0.2);
+}
+.co-pagination button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.co-pagination__direction {
+  border-color: var(--co-color-line-strong) !important;
+  background: rgba(255, 255, 255, 0.68) !important;
+}
+.co-pagination__ellipsis {
+  width: 28px;
+  color: var(--co-color-subtle);
+  text-align: center;
+}
+
 @media (max-width: 760px) {
   .co-container {
     width: min(100% - 32px, var(--co-container));
@@ -712,6 +866,22 @@
   .co-input,
   .co-textarea {
     font-size: 16px;
+  }
+  .co-search-field {
+    width: 100%;
+  }
+  .co-search-field input {
+    font-size: 16px;
+  }
+  .co-filter-bar {
+    align-items: stretch;
+  }
+  .co-pagination {
+    gap: 2px;
+  }
+  .co-pagination button {
+    width: 34px;
+    height: 34px;
   }
 }
 

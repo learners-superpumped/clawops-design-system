@@ -25,7 +25,7 @@ import {
   Tooltip,
 } from "@teamlearners/clawops-design-system";
 
-import { CodeBlock, MobileNavigation } from "./docs-client";
+import { CodeBlock, MobileNavigation, OperationsExplorer } from "./docs-client";
 
 const navigation = [
   {
@@ -50,6 +50,7 @@ const navigation = [
       ["버튼", "#buttons"],
       ["입력", "#forms"],
       ["데이터 표시", "#data-display"],
+      ["검색과 필터", "#data-navigation"],
       ["피드백", "#feedback"],
       ["인터랙션", "#interactive"],
     ],
@@ -184,7 +185,7 @@ export default function Page() {
         </nav>
         <div className="docs-top-actions">
           <Badge tone="success" dot>
-            v0.2 preview
+            v0.3 preview
           </Badge>
           <MobileNavigation navigation={navigation} />
         </div>
@@ -304,21 +305,21 @@ export default function Page() {
                   id: "npm",
                   label: "npm",
                   content: (
-                    <CodeBlock code="npm install git+https://github.com/learners-superpumped/clawops-design-system.git#v0.2.0" />
+                    <CodeBlock code="npm install git+https://github.com/learners-superpumped/clawops-design-system.git#v0.3.0" />
                   ),
                 },
                 {
                   id: "pnpm",
                   label: "pnpm",
                   content: (
-                    <CodeBlock code="pnpm add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.2.0" />
+                    <CodeBlock code="pnpm add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.3.0" />
                   ),
                 },
                 {
                   id: "yarn",
                   label: "yarn",
                   content: (
-                    <CodeBlock code="yarn add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.2.0" />
+                    <CodeBlock code="yarn add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.3.0" />
                   ),
                 },
               ]}
@@ -575,6 +576,25 @@ export default function App() {
                 </div>
               </Demo>
             </div>
+          </Section>
+
+          <Section
+            id="data-navigation"
+            eyebrow="COMPONENTS · DATA NAVIGATION"
+            title="운영 데이터를 빠르게 탐색."
+            description="검색, 상태 필터와 페이지 이동을 같은 흐름으로 조합해 많은 통화 기록에서도 필요한 항목을 바로 찾습니다."
+          >
+            <Demo title="통화 기록 탐색" className="operations-demo">
+              <OperationsExplorer />
+            </Demo>
+            <CodeBlock
+              compact
+              code={`<SearchField placeholder="번호 또는 통화 목적 검색" />
+<FilterBar>
+  <FilterChip selected count={18}>통화 중</FilterChip>
+</FilterBar>
+<Pagination page={2} pageCount={12} onPageChange={setPage} />`}
+            />
           </Section>
 
           <Section

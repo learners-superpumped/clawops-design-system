@@ -8,6 +8,8 @@ ClawOps 제품군에서 공통으로 사용하는 블루 글래스 디자인 시
 
 ![ClawOps Design System 데스크톱 개요](./assets/screenshots/overview-desktop.png)
 
+![검색, 필터와 페이지네이션을 조합한 데이터 탐색 예제](./assets/screenshots/data-navigation-desktop.png)
+
 <table>
   <tr>
     <td width="50%">
@@ -42,7 +44,7 @@ ClawOps 제품군에서 공통으로 사용하는 블루 글래스 디자인 시
 npm 배포 전에는 GitHub 태그를 직접 설치할 수 있습니다.
 
 ```bash
-npm install github:learners-superpumped/clawops-design-system#v0.2.0
+npm install github:learners-superpumped/clawops-design-system#v0.3.0
 ```
 
 npm 패키지가 공개된 이후에는 다음 명령을 사용합니다.
@@ -109,6 +111,7 @@ export function Example() {
 - React primitives: Button, IconButton, Card, Badge, Field, Input, Textarea, SectionHeading, Container, Stack, Inline, Grid, Ambient
 - Interactive components: Tabs, Switch, Accordion, Tooltip
 - Feedback and data display: Callout, Avatar, Progress, Skeleton, Spinner, Separator, Stat
+- Data navigation: SearchField, FilterBar, FilterChip, Pagination
 - 모든 클래스는 `co-` 접두사를 사용해 기존 프로젝트 CSS와 충돌하지 않습니다.
 - 색상이나 간격을 제품별로 바꿀 때는 컴포넌트를 포크하지 않고 `--co-*` 토큰을 덮어씁니다.
 - 모션 감소 환경과 키보드 포커스를 기본 지원합니다.
