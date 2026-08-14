@@ -327,7 +327,11 @@ export function MobileNavigation({
           </button>
         </DrawerTrigger>
       </div>
-      <DrawerContent side="right" size="sm" className="mobile-navigation-panel">
+      <DrawerContent
+        side="right"
+        variant="navigation"
+        className="mobile-navigation-panel"
+      >
         <DrawerHeader>
           <DrawerTitle>컴포넌트 둘러보기</DrawerTitle>
         </DrawerHeader>

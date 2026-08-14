@@ -31,6 +31,7 @@ export interface DrawerContentProps extends ComponentPropsWithoutRef<
 > {
   side?: DrawerSide;
   size?: DrawerSize;
+  variant?: "standard" | "navigation";
   showClose?: boolean;
   closeLabel?: string;
   overlay?: boolean;
@@ -41,6 +42,7 @@ export function DrawerContent({
   children,
   side = "right",
   size = "md",
+  variant = "standard",
   showClose = true,
   closeLabel = "닫기",
   overlay = true,
@@ -55,6 +57,7 @@ export function DrawerContent({
           "co-drawer__content",
           `co-drawer__content--${side}`,
           `co-drawer__content--${size}`,
+          variant === "navigation" && "co-drawer__content--navigation",
           className,
         )}
         {...props}

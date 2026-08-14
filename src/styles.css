@@ -1020,6 +1020,20 @@
 .co-drawer__content--full {
   --co-drawer-width: 100vw;
 }
+.co-drawer__content--navigation {
+  --co-drawer-width: 320px;
+}
+.co-drawer__content--navigation .co-drawer__close {
+  width: 44px;
+  height: 44px;
+  top: 10px;
+  right: 12px;
+  border-radius: 14px;
+}
+.co-drawer__content--navigation .co-drawer__close svg {
+  width: 22px;
+  height: 22px;
+}
 .co-drawer__close {
   position: absolute;
   top: 12px;
