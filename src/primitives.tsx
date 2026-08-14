@@ -304,3 +304,227 @@ export function Ambient({
     />
   );
 }
+
+export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  label: string;
+  size?: "sm" | "md" | "lg";
+}
+export function IconButton({
+  label,
+  size = "md",
+  className,
+  type = "button",
+  ...props
+}: IconButtonProps) {
+  return (
+    <button
+      type={type}
+      aria-label={label}
+      className={cx("co-icon-button", `co-icon-button--${size}`, className)}
+      {...props}
+    />
+  );
+}
+
+export interface CalloutProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "title"
+> {
+  title?: ReactNode;
+  tone?: "info" | "success" | "warning" | "danger";
+  icon?: ReactNode;
+}
+export function Callout({
+  title,
+  tone = "info",
+  icon,
+  className,
+  children,
+  ...props
+}: CalloutProps) {
+  return (
+    <div
+      className={cx("co-callout", `co-callout--${tone}`, className)}
+      role={tone === "danger" ? "alert" : "status"}
+      {...props}
+    >
+      {icon && <span className="co-callout__icon">{icon}</span>}
+      <div>
+        {title && <strong className="co-callout__title">{title}</strong>}
+        <div className="co-callout__content">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
+  name: string;
+  src?: string;
+  size?: "sm" | "md" | "lg";
+  status?: "online" | "busy" | "offline";
+}
+export function Avatar({
+  name,
+  src,
+  size = "md",
+  status,
+  className,
+  ...props
+}: AvatarProps) {
+  const initials = name
+    .split(/\s+/)
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+  return (
+    <span
+      className={cx("co-avatar", `co-avatar--${size}`, className)}
+      title={name}
+      {...props}
+    >
+      {src ? <img src={src} alt={name} /> : <span>{initials}</span>}
+      {status && (
+        <i
+          className={cx("co-avatar__status", `co-avatar__status--${status}`)}
+          aria-label={status}
+        />
+      )}
+    </span>
+  );
+}
+
+export interface ProgressProps extends HTMLAttributes<HTMLDivElement> {
+  value: number;
+  max?: number;
+  label?: ReactNode;
+  showValue?: boolean;
+}
+export function Progress({
+  value,
+  max = 100,
+  label,
+  showValue,
+  className,
+  ...props
+}: ProgressProps) {
+  const percent = Math.max(0, Math.min(100, (value / max) * 100));
+  return (
+    <div className={cx("co-progress", className)} {...props}>
+      {(label || showValue) && (
+        <div className="co-progress__header">
+          <span>{label}</span>
+          {showValue && <strong>{Math.round(percent)}%</strong>}
+        </div>
+      )}
+      <div
+        className="co-progress__track"
+        role="progressbar"
+        aria-valuenow={value}
+        aria-valuemin={0}
+        aria-valuemax={max}
+      >
+        <span style={{ width: `${percent}%` }} />
+      </div>
+    </div>
+  );
+}
+
+export interface SkeletonProps extends HTMLAttributes<HTMLSpanElement> {
+  width?: string | number;
+  height?: string | number;
+  circle?: boolean;
+}
+export function Skeleton({
+  width = "100%",
+  height = 16,
+  circle,
+  className,
+  style,
+  ...props
+}: SkeletonProps) {
+  return (
+    <span
+      aria-hidden="true"
+      className={cx("co-skeleton", circle && "co-skeleton--circle", className)}
+      style={{ width, height, ...style }}
+      {...props}
+    />
+  );
+}
+
+export interface SpinnerProps extends HTMLAttributes<HTMLSpanElement> {
+  label?: string;
+  size?: "sm" | "md" | "lg";
+}
+export function Spinner({
+  label = "불러오는 중",
+  size = "md",
+  className,
+  ...props
+}: SpinnerProps) {
+  return (
+    <span
+      className={cx("co-spinner", `co-spinner--${size}`, className)}
+      role="status"
+      aria-label={label}
+      {...props}
+    />
+  );
+}
+
+export function Separator({
+  className,
+  ...props
+}: HTMLAttributes<HTMLHRElement>) {
+  return <hr className={cx("co-separator", className)} {...props} />;
+}
+
+export interface StatProps extends HTMLAttributes<HTMLDivElement> {
+  label: ReactNode;
+  value: ReactNode;
+  change?: ReactNode;
+  trend?: "up" | "down" | "neutral";
+}
+export function Stat({
+  label,
+  value,
+  change,
+  trend = "neutral",
+  className,
+  ...props
+}: StatProps) {
+  return (
+    <div className={cx("co-stat", className)} {...props}>
+      <span className="co-stat__label">{label}</span>
+      <strong className="co-stat__value">{value}</strong>
+      {change && (
+        <span className={cx("co-stat__change", `co-stat__change--${trend}`)}>
+          {change}
+        </span>
+      )}
+    </div>
+  );
+}
+
+export interface TooltipProps extends Omit<
+  HTMLAttributes<HTMLSpanElement>,
+  "content"
+> {
+  content: ReactNode;
+}
+export function Tooltip({
+  content,
+  className,
+  children,
+  ...props
+}: TooltipProps) {
+  return (
+    <span className={cx("co-tooltip", className)} {...props}>
+      {children}
+      <span className="co-tooltip__content" role="tooltip">
+        {content}
+      </span>
+    </span>
+  );
+}
