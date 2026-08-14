@@ -376,6 +376,26 @@
   --co-callout-line: #efcece;
   --co-callout-ink: #9b3c3c;
 }
+.dark .co-callout--info {
+  --co-callout-bg: rgba(49, 95, 159, 0.16);
+  --co-callout-line: rgba(122, 162, 255, 0.24);
+  --co-callout-ink: #b6caff;
+}
+.dark .co-callout--success {
+  --co-callout-bg: rgba(54, 167, 101, 0.13);
+  --co-callout-line: rgba(93, 204, 138, 0.22);
+  --co-callout-ink: #8bd5aa;
+}
+.dark .co-callout--warning {
+  --co-callout-bg: rgba(213, 146, 47, 0.12);
+  --co-callout-line: rgba(229, 177, 81, 0.24);
+  --co-callout-ink: #e7c078;
+}
+.dark .co-callout--danger {
+  --co-callout-bg: rgba(181, 71, 71, 0.14);
+  --co-callout-line: rgba(222, 107, 107, 0.24);
+  --co-callout-ink: #e6a0a0;
+}
 .co-callout__icon {
   display: grid;
   place-items: start center;
