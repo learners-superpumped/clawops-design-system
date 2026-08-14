@@ -7,11 +7,14 @@ import {
   Drawer,
   DrawerContent,
   DrawerHeader,
+  DrawerNavChevron,
   DrawerNavIcon,
   DrawerNavItem,
   DrawerNavLabel,
+  DrawerNavMeta,
   DrawerNavigation,
   DrawerNavSection,
+  DrawerNavSubmenu,
   DrawerNavText,
   DrawerTitle,
   DrawerTrigger,
@@ -322,6 +325,7 @@ export function MobileNavigation({
   navigation: DocsNavigation;
 }) {
   const [open, setOpen] = useState(false);
+  const [expandedGroup, setExpandedGroup] = useState("컴포넌트");
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <div className="mobile-navigation">
@@ -344,22 +348,53 @@ export function MobileNavigation({
           {navigation.map((group) => (
             <DrawerNavSection key={group.title}>
               <DrawerNavLabel>{group.title}</DrawerNavLabel>
-              {group.items.map(([label, href]) => (
-                <DrawerNavItem
-                  asChild
-                  active={href === "#introduction"}
-                  key={href}
-                >
-                  <a href={href} onClick={() => setOpen(false)}>
+              {group.title === "컴포넌트" ? (
+                <>
+                  <DrawerNavItem
+                    aria-expanded={expandedGroup === group.title}
+                    onClick={() =>
+                      setExpandedGroup((current) =>
+                        current === group.title ? "" : group.title,
+                      )
+                    }
+                  >
                     <DrawerNavIcon>
                       <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M5 5.5h14v13H5zM8.5 9h7M8.5 12h7M8.5 15h4" />
+                        <path d="M4.5 4.5h6v6h-6zM13.5 4.5h6v6h-6zM4.5 13.5h6v6h-6zM13.5 13.5h6v6h-6z" />
                       </svg>
                     </DrawerNavIcon>
-                    <DrawerNavText>{label}</DrawerNavText>
-                  </a>
-                </DrawerNavItem>
-              ))}
+                    <DrawerNavText>전체 컴포넌트</DrawerNavText>
+                    <DrawerNavMeta>{group.items.length}</DrawerNavMeta>
+                    <DrawerNavChevron open={expandedGroup === group.title} />
+                  </DrawerNavItem>
+                  <DrawerNavSubmenu open={expandedGroup === group.title}>
+                    {group.items.map(([label, href]) => (
+                      <DrawerNavItem asChild nested key={href}>
+                        <a href={href} onClick={() => setOpen(false)}>
+                          <DrawerNavText>{label}</DrawerNavText>
+                        </a>
+                      </DrawerNavItem>
+                    ))}
+                  </DrawerNavSubmenu>
+                </>
+              ) : (
+                group.items.map(([label, href]) => (
+                  <DrawerNavItem
+                    asChild
+                    active={href === "#introduction"}
+                    key={href}
+                  >
+                    <a href={href} onClick={() => setOpen(false)}>
+                      <DrawerNavIcon>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M5 5.5h14v13H5zM8.5 9h7M8.5 12h7M8.5 15h4" />
+                        </svg>
+                      </DrawerNavIcon>
+                      <DrawerNavText>{label}</DrawerNavText>
+                    </a>
+                  </DrawerNavItem>
+                ))
+              )}
             </DrawerNavSection>
           ))}
         </DrawerNavigation>

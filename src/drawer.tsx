@@ -184,3 +184,48 @@ export type DrawerNavMetaProps = HTMLAttributes<HTMLSpanElement>;
 export function DrawerNavMeta({ className, ...props }: DrawerNavMetaProps) {
   return <span className={cx("co-drawer-nav__meta", className)} {...props} />;
 }
+
+export interface DrawerNavSubmenuProps extends HTMLAttributes<HTMLDivElement> {
+  open?: boolean;
+}
+export function DrawerNavSubmenu({
+  className,
+  open = false,
+  children,
+  ...props
+}: DrawerNavSubmenuProps) {
+  return (
+    <div
+      className={cx("co-drawer-nav__submenu", className)}
+      data-state={open ? "open" : "closed"}
+      aria-hidden={!open}
+      {...props}
+    >
+      <div>{children}</div>
+    </div>
+  );
+}
+
+export interface DrawerNavChevronProps extends HTMLAttributes<HTMLSpanElement> {
+  open?: boolean;
+}
+export function DrawerNavChevron({
+  className,
+  open,
+  children,
+  ...props
+}: DrawerNavChevronProps) {
+  return (
+    <span
+      className={cx("co-drawer-nav__chevron", open && "is-open", className)}
+      aria-hidden="true"
+      {...props}
+    >
+      {children ?? (
+        <svg viewBox="0 0 20 20">
+          <path d="m7.5 5 5 5-5 5" />
+        </svg>
+      )}
+    </span>
+  );
+}

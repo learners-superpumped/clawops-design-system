@@ -6,6 +6,12 @@ import {
   Badge,
   Button,
   Card,
+  DrawerNavChevron,
+  DrawerNavIcon,
+  DrawerNavItem,
+  DrawerNavigation,
+  DrawerNavSubmenu,
+  DrawerNavText,
   Field,
   FilterChip,
   Input,
@@ -102,5 +108,37 @@ describe("design system primitives", () => {
     expect(markup).toContain("co-pagination--compact");
     expect(markup).toContain('aria-disabled="true"');
     expect(markup).toContain("<strong>2</strong> / 8");
+  });
+
+  it("renders material drawer items and expandable submenus accessibly", () => {
+    const markup = renderToStaticMarkup(
+      createElement(
+        DrawerNavigation,
+        { "aria-label": "주 메뉴" },
+        createElement(
+          DrawerNavItem,
+          { active: true },
+          createElement(DrawerNavIcon, null, "01"),
+          createElement(DrawerNavText, null, "대시보드"),
+        ),
+        createElement(
+          DrawerNavItem,
+          { "aria-expanded": true },
+          createElement(DrawerNavText, null, "전화번호"),
+          createElement(DrawerNavChevron, { open: true }),
+        ),
+        createElement(
+          DrawerNavSubmenu,
+          { open: true },
+          createElement(DrawerNavItem, { nested: true }, "번호 목록"),
+        ),
+      ),
+    );
+
+    expect(markup).toContain('aria-current="page"');
+    expect(markup).toContain('aria-expanded="true"');
+    expect(markup).toContain('data-state="open"');
+    expect(markup).toContain("co-drawer-nav__item--nested");
+    expect(markup).toContain("co-drawer-nav__chevron is-open");
   });
 });

@@ -192,7 +192,7 @@ export default function Page() {
         </nav>
         <div className="docs-top-actions">
           <Badge tone="success" dot>
-            v0.5.3
+            v0.5.4
           </Badge>
           <MobileNavigation navigation={navigation} />
         </div>
@@ -310,21 +310,21 @@ export default function Page() {
                   id: "npm",
                   label: "npm",
                   content: (
-                    <CodeBlock code="npm install git+https://github.com/learners-superpumped/clawops-design-system.git#v0.5.3" />
+                    <CodeBlock code="npm install git+https://github.com/learners-superpumped/clawops-design-system.git#v0.5.4" />
                   ),
                 },
                 {
                   id: "pnpm",
                   label: "pnpm",
                   content: (
-                    <CodeBlock code="pnpm add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.5.3" />
+                    <CodeBlock code="pnpm add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.5.4" />
                   ),
                 },
                 {
                   id: "yarn",
                   label: "yarn",
                   content: (
-                    <CodeBlock code="yarn add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.5.3" />
+                    <CodeBlock code="yarn add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.5.4" />
                   ),
                 },
               ]}

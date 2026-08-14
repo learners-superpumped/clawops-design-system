@@ -1,5 +1,11 @@
 # 변경 기록
 
+## 0.5.4
+
+- Drawer 포털 내부에 독립적인 border-box 규칙을 적용해 가로 스크롤 제거
+- 펼침 모션과 회전 Chevron을 포함한 접근 가능한 하위 메뉴 컴포넌트 추가
+- 긴 메뉴 레이블 말줄임과 중첩 항목 폭 계산 안정화
+
 ## 0.5.3
 
 - Material Drawer 내부를 구성하는 Navigation, Section, Label, Item, Icon, Text, Meta 추가
