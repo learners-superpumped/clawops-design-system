@@ -19,12 +19,16 @@ import {
   DrawerNavigation,
   DrawerNavSubmenu,
   DrawerNavText,
+  Dialog,
+  DialogTrigger,
   EmptyState,
   Field,
   FilterChip,
   Input,
   Pagination,
   PageHeader,
+  NavigationTab,
+  NavigationTabs,
   SearchField,
   SectionCard,
   SectionCardBody,
@@ -266,5 +270,43 @@ describe("design system primitives", () => {
     expect(markup).toContain('aria-valuenow="80"');
     expect(markup).toContain("co-usage-meter__fill--warning");
     expect(markup).toContain("무제한");
+  });
+
+  it("renders URL navigation tabs with current-page semantics", () => {
+    const markup = renderToStaticMarkup(
+      createElement(
+        NavigationTabs,
+        { label: "전화번호 메뉴" },
+        createElement(
+          NavigationTab,
+          { href: "/numbers", active: true, count: 2 },
+          "내 번호",
+        ),
+        createElement(NavigationTab, { href: "/numbers/sip" }, "SIP 단말"),
+      ),
+    );
+
+    expect(markup).toContain('aria-label="전화번호 메뉴"');
+    expect(markup).toContain('aria-current="page"');
+    expect(markup).toContain("co-navigation-tab__count");
+  });
+
+  it("supports warning badges and accessible dialog triggers", () => {
+    const markup = renderToStaticMarkup(
+      createElement(
+        "div",
+        null,
+        createElement(Badge, { tone: "warning", dot: true }, "준비 중"),
+        createElement(
+          Dialog,
+          null,
+          createElement(DialogTrigger, null, "번호 설정"),
+        ),
+      ),
+    );
+
+    expect(markup).toContain("co-badge--warning");
+    expect(markup).toContain("준비 중");
+    expect(markup).toContain("번호 설정");
   });
 });

@@ -4,6 +4,17 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   Badge,
+  Button,
+  ConfirmDialog,
+  Dialog,
+  DialogBody,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
   Drawer,
   DrawerContent,
   DrawerHeader,
@@ -23,6 +34,59 @@ import {
   Pagination,
   SearchField,
 } from "@teamlearners/clawops-design-system";
+
+export function DialogExamples() {
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  return (
+    <div className="demo-row">
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="secondary">번호 설정</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>전화번호 설정</DialogTitle>
+            <DialogDescription>
+              인바운드 라우팅과 웹훅 연결을 설정합니다.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogBody>
+            <div className="dialog-demo-number">
+              <span>발급 번호</span>
+              <strong>070-xxxx-8010</strong>
+              <Badge tone="success" dot>
+                사용 가능
+              </Badge>
+            </div>
+          </DialogBody>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="secondary">취소</Button>
+            </DialogClose>
+            <Button variant="accent">변경 저장</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      <Button variant="ghost" onClick={() => setConfirmOpen(true)}>
+        번호 반납
+      </Button>
+      <ConfirmDialog
+        open={confirmOpen}
+        onOpenChange={setConfirmOpen}
+        title="070-xxxx-8010을 반납할까요?"
+        description="연결된 라우팅과 웹훅 설정이 함께 해제되며 되돌릴 수 없습니다."
+        tone="danger"
+        confirmLabel="번호 반납"
+        onConfirm={() => setConfirmOpen(false)}
+        icon={
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 7h14M9 7V4h6v3m-8 0 1 13h8l1-13M10 11v5m4-5v5" />
+          </svg>
+        }
+      />
+    </div>
+  );
+}
 
 const operationRows = [
   ["010-xxxx-4821", "고객 문의", "완료", "2분 14초", "방금 전"],

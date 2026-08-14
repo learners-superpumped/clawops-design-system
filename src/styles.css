@@ -89,6 +89,14 @@
 .co-button--accent:hover {
   background: linear-gradient(135deg, #3f70ec, #2955ca);
 }
+.co-button--danger {
+  background: linear-gradient(135deg, #c55259, #a43b43);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(181, 71, 71, 0.2);
+}
+.co-button--danger:hover {
+  background: linear-gradient(135deg, #b8474e, #93343b);
+}
 .co-button--secondary {
   border-color: var(--co-color-line-strong);
   background: rgba(255, 255, 255, 0.62);
@@ -159,10 +167,20 @@
   background: rgba(229, 248, 237, 0.76);
   color: #2f8653;
 }
+.co-badge--warning {
+  border-color: rgba(217, 119, 6, 0.2);
+  background: rgba(255, 247, 227, 0.82);
+  color: #a45d08;
+}
 .co-badge--danger {
   border-color: rgba(210, 68, 74, 0.18);
   background: rgba(255, 235, 236, 0.78);
   color: #b23e47;
+}
+.dark .co-badge--warning {
+  border-color: rgba(251, 191, 36, 0.24);
+  background: rgba(120, 76, 8, 0.22);
+  color: #f6c653;
 }
 .co-badge__dot {
   width: 7px;
@@ -1626,6 +1644,252 @@
   line-height: 1.5;
 }
 
+.co-navigation-tabs {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 5px;
+  border: 1px solid var(--co-color-line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--co-color-surface) 78%, transparent);
+  box-shadow: var(--co-shadow-sm);
+  backdrop-filter: var(--co-glass-blur);
+  scrollbar-width: none;
+  overscroll-behavior-inline: contain;
+}
+.co-navigation-tabs::-webkit-scrollbar {
+  display: none;
+}
+.co-navigation-tab {
+  min-height: 42px;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: var(--co-color-muted);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color var(--co-motion-fast),
+    background var(--co-motion-fast),
+    border-color var(--co-motion-fast),
+    box-shadow var(--co-motion-fast),
+    transform var(--co-motion-fast) var(--co-ease);
+}
+.co-navigation-tab:hover {
+  color: var(--co-color-ink);
+  background: color-mix(in srgb, var(--co-color-primary-soft) 55%, transparent);
+}
+.co-navigation-tab:focus-visible {
+  outline: 2px solid var(--co-color-primary);
+  outline-offset: 2px;
+}
+.co-navigation-tab.is-active {
+  border-color: color-mix(in srgb, var(--co-color-primary) 18%, transparent);
+  background: color-mix(
+    in srgb,
+    var(--co-color-primary-soft) 88%,
+    var(--co-color-surface-strong)
+  );
+  color: var(--co-color-primary-strong);
+  box-shadow: 0 6px 18px rgba(59, 111, 245, 0.11);
+}
+.co-navigation-tab__icon {
+  width: 17px;
+  height: 17px;
+  display: inline-grid;
+  place-items: center;
+}
+.co-navigation-tab__icon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+}
+.co-navigation-tab__count {
+  min-width: 20px;
+  height: 20px;
+  display: inline-grid;
+  place-items: center;
+  padding-inline: 5px;
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor 10%, transparent);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.co-dialog__overlay,
+.co-dialog__content,
+.co-dialog__content * {
+  box-sizing: border-box;
+}
+.co-dialog__overlay {
+  position: fixed;
+  z-index: 80;
+  inset: 0;
+  background: rgba(16, 24, 40, 0.38);
+  backdrop-filter: blur(8px) saturate(108%);
+  animation: co-dialog-fade-in var(--co-motion-base) var(--co-ease);
+}
+.co-dialog__content {
+  position: fixed;
+  z-index: 81;
+  top: 50%;
+  left: 50%;
+  width: min(calc(100vw - 32px), 560px);
+  max-height: min(86vh, 760px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  border: 1px solid color-mix(in srgb, var(--co-color-line-strong) 78%, #fff);
+  border-radius: 22px;
+  outline: none;
+  background: color-mix(
+    in srgb,
+    var(--co-color-surface-strong) 90%,
+    transparent
+  );
+  color: var(--co-color-ink);
+  box-shadow: var(--co-shadow-lg);
+  backdrop-filter: blur(28px) saturate(126%);
+  animation: co-dialog-enter var(--co-motion-base) var(--co-ease);
+}
+.co-dialog__content--sm {
+  width: min(calc(100vw - 32px), 440px);
+}
+.co-dialog__content--lg {
+  width: min(calc(100vw - 32px), 720px);
+}
+.co-dialog__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  background: transparent;
+  color: var(--co-color-muted);
+  cursor: pointer;
+  transition:
+    background var(--co-motion-fast),
+    color var(--co-motion-fast),
+    transform var(--co-motion-fast) var(--co-ease);
+}
+.co-dialog__close:hover {
+  background: var(--co-color-primary-soft);
+  color: var(--co-color-ink);
+  transform: rotate(2deg);
+}
+.co-dialog__close:focus-visible {
+  outline: 2px solid var(--co-color-primary);
+  outline-offset: 2px;
+}
+.co-dialog__close svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+}
+.co-dialog__header {
+  display: grid;
+  gap: 8px;
+  padding: 24px 64px 20px 24px;
+  border-bottom: 1px solid var(--co-color-line);
+}
+.co-dialog__title {
+  margin: 0;
+  color: var(--co-color-ink);
+  font-size: 18px;
+  font-weight: 740;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+}
+.co-dialog__description {
+  margin: 0;
+  color: var(--co-color-muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.co-dialog__body {
+  min-height: 0;
+  overflow-y: auto;
+  padding: 22px 24px;
+  overscroll-behavior: contain;
+}
+.co-dialog__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--co-color-line);
+  background: color-mix(
+    in srgb,
+    var(--co-color-canvas-subtle) 54%,
+    transparent
+  );
+}
+.co-confirm-dialog__header {
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 14px;
+  padding-right: 58px;
+}
+.co-confirm-dialog__header > div {
+  display: grid;
+  gap: 7px;
+}
+.co-confirm-dialog__icon {
+  width: 42px;
+  height: 42px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--co-color-primary) 20%, transparent);
+  border-radius: 13px;
+  background: var(--co-color-primary-soft);
+  color: var(--co-color-primary-strong);
+}
+.co-confirm-dialog__icon--danger {
+  border-color: color-mix(in srgb, var(--co-color-danger) 22%, transparent);
+  background: color-mix(in srgb, var(--co-color-danger) 10%, transparent);
+  color: var(--co-color-danger);
+}
+.co-confirm-dialog__icon svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+}
+@keyframes co-dialog-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes co-dialog-enter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 12px)) scale(0.975);
+  }
+}
+
 @media (max-width: 760px) {
   .co-container {
     width: min(100% - 32px, var(--co-container));
@@ -1691,12 +1955,47 @@
   .co-data-table__td {
     padding-inline: 14px;
   }
+  .co-navigation-tabs {
+    width: calc(100% + 16px);
+    margin-inline: -8px;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+    padding-inline: 8px;
+    scroll-padding-inline: 8px;
+  }
+  .co-navigation-tab {
+    min-height: 44px;
+  }
+  .co-dialog__content {
+    width: calc(100vw - 20px);
+    max-height: calc(100dvh - 20px);
+    border-radius: 18px;
+  }
+  .co-dialog__header {
+    padding: 21px 56px 18px 20px;
+  }
+  .co-dialog__body {
+    padding: 20px;
+  }
+  .co-dialog__footer {
+    padding: 14px 20px max(14px, env(safe-area-inset-bottom));
+  }
+  .co-dialog__footer .co-button {
+    flex: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .co-theme *,
   .co-theme *::before,
-  .co-theme *::after {
+  .co-theme *::after,
+  .co-dialog__overlay,
+  .co-dialog__content,
+  .co-dialog__overlay::before,
+  .co-dialog__overlay::after,
+  .co-dialog__content::before,
+  .co-dialog__content::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }

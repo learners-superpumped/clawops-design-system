@@ -44,7 +44,7 @@ ClawOps 제품군에서 공통으로 사용하는 블루 글래스 디자인 시
 npm 배포 전에는 GitHub 태그를 직접 설치할 수 있습니다.
 
 ```bash
-npm install github:learners-superpumped/clawops-design-system#v0.6.1
+npm install github:learners-superpumped/clawops-design-system#v0.7.0
 ```
 
 npm 패키지가 공개된 이후에는 다음 명령을 사용합니다.
@@ -138,6 +138,7 @@ export function Example() {
 - `styles.css`: 프레임워크에 의존하지 않는 컴포넌트 스타일
 - React primitives: Button, IconButton, Card, Badge, Field, Input, Textarea, SectionHeading, Container, Stack, Inline, Grid, Ambient
 - Interactive components: Tabs, Switch, Accordion, Tooltip
+- Product navigation and overlays: NavigationTabs, Dialog, ConfirmDialog, Drawer
 - Feedback and data display: Callout, Avatar, Progress, Skeleton, Spinner, Separator, Stat
 - Data navigation: SearchField, FilterBar, FilterChip, Pagination
 - 모든 클래스는 `co-` 접두사를 사용해 기존 프로젝트 CSS와 충돌하지 않습니다.

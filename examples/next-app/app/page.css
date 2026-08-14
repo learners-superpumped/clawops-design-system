@@ -915,6 +915,30 @@ svg {
   border-radius: 24px;
   background: color-mix(in srgb, var(--co-color-canvas) 88%, #fff);
 }
+.dialog-demo-number {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 18px;
+  border: 1px solid var(--co-color-line);
+  border-radius: 15px;
+  background: var(--co-color-canvas-subtle);
+}
+.dialog-demo-number > span {
+  color: var(--co-color-muted);
+  font-size: 12px;
+}
+.dialog-demo-number > strong {
+  grid-row: 2;
+  color: var(--co-color-ink);
+  font-family: var(--co-font-mono);
+  font-size: 17px;
+}
+.dialog-demo-number > .co-badge {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
 .stat-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

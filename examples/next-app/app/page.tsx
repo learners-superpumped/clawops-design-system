@@ -40,11 +40,14 @@ import {
   Tooltip,
   UsageMeterList,
   ActionLink,
+  NavigationTab,
+  NavigationTabs,
 } from "@teamlearners/clawops-design-system";
 
 import {
   CodeBlock,
   ComponentSearch,
+  DialogExamples,
   MobileNavigation,
   OperationsExplorer,
 } from "./docs-client";
@@ -208,7 +211,7 @@ export default function Page() {
         </nav>
         <div className="docs-top-actions">
           <Badge tone="success" dot>
-            v0.6.1
+            v0.7.0
           </Badge>
           <MobileNavigation navigation={navigation} />
         </div>
@@ -326,21 +329,21 @@ export default function Page() {
                   id: "npm",
                   label: "npm",
                   content: (
-                    <CodeBlock code="npm install git+https://github.com/learners-superpumped/clawops-design-system.git#v0.6.1" />
+                    <CodeBlock code="npm install git+https://github.com/learners-superpumped/clawops-design-system.git#v0.7.0" />
                   ),
                 },
                 {
                   id: "pnpm",
                   label: "pnpm",
                   content: (
-                    <CodeBlock code="pnpm add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.6.1" />
+                    <CodeBlock code="pnpm add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.7.0" />
                   ),
                 },
                 {
                   id: "yarn",
                   label: "yarn",
                   content: (
-                    <CodeBlock code="yarn add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.6.1" />
+                    <CodeBlock code="yarn add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.7.0" />
                   ),
                 },
               ]}
@@ -853,6 +856,20 @@ export default function App() {
             title="자연스럽게 이어지는 상호작용."
             description="접근 가능한 상태와 키보드 의미를 유지하면서 짧고 명확하게 반응합니다."
           >
+            <Demo
+              title="Navigation tabs"
+              description="URL이 바뀌는 제품 영역을 모바일에서도 안정적으로 탐색"
+            >
+              <NavigationTabs label="전화번호 메뉴">
+                <NavigationTab href="#interactive" active count={3}>
+                  내 번호
+                </NavigationTab>
+                <NavigationTab href="#interactive">대표번호</NavigationTab>
+                <NavigationTab href="#interactive">관리번호</NavigationTab>
+                <NavigationTab href="#interactive">SIP 단말</NavigationTab>
+                <NavigationTab href="#interactive">SIP 라우팅</NavigationTab>
+              </NavigationTabs>
+            </Demo>
             <div className="demo-two-column">
               <Demo title="Tabs">
                 <Tabs
@@ -913,6 +930,12 @@ export default function App() {
                 />
               </Demo>
             </div>
+            <Demo
+              title="Dialogs"
+              description="설정 작업과 되돌릴 수 없는 확인을 같은 공간 위계로 구분"
+            >
+              <DialogExamples />
+            </Demo>
           </Section>
 
           <Section

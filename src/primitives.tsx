@@ -180,7 +180,7 @@ export function Card({
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   children?: ReactNode;
-  tone?: "neutral" | "accent" | "success" | "danger";
+  tone?: "neutral" | "accent" | "success" | "warning" | "danger";
   dot?: boolean;
 }
 export function Badge({
