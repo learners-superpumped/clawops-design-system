@@ -13,6 +13,8 @@ import {
   IconButton,
   Input,
   Progress,
+  Pagination,
+  SearchField,
   Separator,
   Skeleton,
   Spinner,
@@ -185,7 +187,7 @@ export default function Page() {
         </nav>
         <div className="docs-top-actions">
           <Badge tone="success" dot>
-            v0.3 preview
+            v0.4
           </Badge>
           <MobileNavigation navigation={navigation} />
         </div>
@@ -305,21 +307,21 @@ export default function Page() {
                   id: "npm",
                   label: "npm",
                   content: (
-                    <CodeBlock code="npm install git+https://github.com/learners-superpumped/clawops-design-system.git#v0.3.0" />
+                    <CodeBlock code="npm install git+https://github.com/learners-superpumped/clawops-design-system.git#v0.4.0" />
                   ),
                 },
                 {
                   id: "pnpm",
                   label: "pnpm",
                   content: (
-                    <CodeBlock code="pnpm add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.3.0" />
+                    <CodeBlock code="pnpm add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.4.0" />
                   ),
                 },
                 {
                   id: "yarn",
                   label: "yarn",
                   content: (
-                    <CodeBlock code="yarn add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.3.0" />
+                    <CodeBlock code="yarn add git+https://github.com/learners-superpumped/clawops-design-system.git#v0.4.0" />
                   ),
                 },
               ]}
@@ -587,10 +589,32 @@ export default function App() {
             <Demo title="통화 기록 탐색" className="operations-demo">
               <OperationsExplorer />
             </Demo>
+            <div className="demo-two-column navigation-state-grid">
+              <Demo title="검색 상태">
+                <Stack>
+                  <SearchField
+                    label="로딩 중인 검색"
+                    defaultValue="070 번호"
+                    loading
+                  />
+                  <SearchField
+                    label="비활성 검색"
+                    placeholder="검색할 수 없습니다"
+                    disabled
+                  />
+                </Stack>
+              </Demo>
+              <Demo title="페이지 크기와 비활성 상태">
+                <Stack>
+                  <Pagination page={4} pageCount={20} size="sm" />
+                  <Pagination page={4} pageCount={20} compact disabled />
+                </Stack>
+              </Demo>
+            </div>
             <CodeBlock
               compact
-              code={`<SearchField placeholder="번호 또는 통화 목적 검색" />
-<FilterBar>
+              code={`<SearchField label="통화 검색" shortcut="/" />
+<FilterBar label="통화 상태 필터">
   <FilterChip selected count={18}>통화 중</FilterChip>
 </FilterBar>
 <Pagination page={2} pageCount={12} onPageChange={setPage} />`}

@@ -11,6 +11,7 @@ import {
   Input,
   Pagination,
   SearchField,
+  getPaginationItems,
   tokens,
 } from "../src/index.js";
 
@@ -46,7 +47,7 @@ describe("design system primitives", () => {
       createElement(
         "div",
         null,
-        createElement(SearchField, { "aria-label": "통화 검색" }),
+        createElement(SearchField, { label: "통화 검색", shortcut: "/" }),
         createElement(FilterChip, { selected: true, count: 4 }, "완료"),
         createElement(Pagination, { page: 3, pageCount: 12 }),
       ),
@@ -56,5 +57,50 @@ describe("design system primitives", () => {
     expect(markup).toContain('aria-pressed="true"');
     expect(markup).toContain('aria-current="page"');
     expect(markup).toContain('aria-label="이전 페이지"');
+  });
+
+  it("keeps pagination ranges stable at boundaries", () => {
+    expect(getPaginationItems(1, 20)).toEqual([
+      1,
+      2,
+      3,
+      4,
+      5,
+      "end-ellipsis",
+      20,
+    ]);
+    expect(getPaginationItems(10, 20)).toEqual([
+      1,
+      "start-ellipsis",
+      9,
+      10,
+      11,
+      "end-ellipsis",
+      20,
+    ]);
+    expect(getPaginationItems(20, 20)).toEqual([
+      1,
+      "start-ellipsis",
+      16,
+      17,
+      18,
+      19,
+      20,
+    ]);
+    expect(getPaginationItems(1, 0)).toEqual([]);
+  });
+
+  it("supports compact and disabled pagination states", () => {
+    const markup = renderToStaticMarkup(
+      createElement(Pagination, {
+        page: 2,
+        pageCount: 8,
+        compact: true,
+        disabled: true,
+      }),
+    );
+    expect(markup).toContain("co-pagination--compact");
+    expect(markup).toContain('aria-disabled="true"');
+    expect(markup).toContain("<strong>2</strong> / 8");
   });
 });

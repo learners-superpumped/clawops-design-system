@@ -38,15 +38,16 @@ export function OperationsExplorer() {
     <div className="operations-explorer">
       <div className="operations-toolbar">
         <SearchField
+          label="통화 검색"
           value={query}
-          onChange={(event) => {
-            setQuery(event.target.value);
+          onValueChange={(next) => {
+            setQuery(next);
             setPage(1);
           }}
           placeholder="번호 또는 통화 목적 검색"
-          aria-label="통화 검색"
+          shortcut="/"
         />
-        <FilterBar aria-label="통화 상태 필터">
+        <FilterBar label="통화 상태 필터">
           {["전체", "통화 중", "완료", "실패"].map((item) => (
             <FilterChip
               key={item}
@@ -104,9 +105,17 @@ export function OperationsExplorer() {
       <div className="operations-footer">
         <span>총 {filtered.length}건</span>
         <Pagination
+          className="operations-pagination-desktop"
           page={Math.min(page, pageCount)}
           pageCount={pageCount}
           onPageChange={setPage}
+        />
+        <Pagination
+          className="operations-pagination-mobile"
+          page={Math.min(page, pageCount)}
+          pageCount={pageCount}
+          onPageChange={setPage}
+          compact
         />
       </div>
     </div>

@@ -718,10 +718,33 @@
     box-shadow var(--co-motion-fast) var(--co-ease),
     background var(--co-motion-fast) var(--co-ease);
 }
+.co-search-field--sm {
+  height: 36px;
+  padding-inline: 11px;
+}
+.co-search-field--lg {
+  height: 48px;
+  padding-inline: 16px;
+}
 .co-search-field:focus-within {
   border-color: var(--co-color-primary);
   background: #fff;
   box-shadow: 0 0 0 3px rgba(59, 111, 245, 0.12);
+}
+.co-search-field.is-disabled {
+  background: rgba(237, 241, 247, 0.72);
+  opacity: 0.68;
+  cursor: not-allowed;
+}
+.co-search-field__icon,
+.co-search-field__end {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+.co-search-field__end {
+  gap: 6px;
 }
 .co-search-field svg {
   width: 17px;
@@ -731,6 +754,38 @@
   stroke: currentColor;
   stroke-width: 1.8;
   stroke-linecap: round;
+}
+.co-search-field__end button {
+  width: 28px;
+  height: 28px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--co-color-muted);
+  cursor: pointer;
+}
+.co-search-field__end button:hover {
+  background: rgba(28, 49, 84, 0.07);
+  color: var(--co-color-ink);
+}
+.co-search-field__end kbd {
+  padding: 3px 6px;
+  border: 1px solid var(--co-color-line-strong);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--co-color-subtle);
+  font: 10px var(--co-font-mono);
+}
+.co-search-field__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(59, 111, 245, 0.18);
+  border-top-color: var(--co-color-primary);
+  border-radius: 50%;
+  animation: co-spin 0.8s linear infinite;
 }
 .co-search-field input {
   width: 100%;
@@ -746,7 +801,7 @@
   color: var(--co-color-subtle);
 }
 .co-search-field input::-webkit-search-cancel-button {
-  cursor: pointer;
+  display: none;
 }
 
 .co-filter-bar {
@@ -756,7 +811,7 @@
   gap: var(--co-space-2);
 }
 .co-filter-chip {
-  min-height: 36px;
+  min-height: 40px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -775,6 +830,11 @@
     border-color var(--co-motion-fast) var(--co-ease),
     background var(--co-motion-fast) var(--co-ease);
 }
+.co-filter-chip--sm {
+  min-height: 34px;
+  padding-inline: 10px;
+  font-size: 12px;
+}
 .co-filter-chip:hover {
   border-color: rgba(59, 111, 245, 0.4);
   transform: translateY(-1px);
@@ -784,22 +844,31 @@
   background: var(--co-color-primary-soft);
   color: var(--co-color-primary-strong);
 }
+.co-filter-chip:focus-visible,
+.co-pagination button:focus-visible,
+.co-search-field__end button:focus-visible {
+  outline: 3px solid rgba(59, 111, 245, 0.28);
+  outline-offset: 2px;
+}
+.co-filter-chip:disabled {
+  opacity: 0.45;
+  transform: none;
+  cursor: not-allowed;
+}
 .co-filter-chip__icon {
   display: inline-grid;
   place-items: center;
 }
 .co-filter-chip__count {
-  min-width: 20px;
-  height: 20px;
-  display: inline-grid;
-  place-items: center;
-  padding: 0 5px;
-  border-radius: 999px;
-  background: rgba(28, 49, 84, 0.07);
+  min-width: 12px;
+  padding-left: 7px;
+  border-left: 1px solid rgba(28, 49, 84, 0.12);
+  color: var(--co-color-subtle);
   font-size: 11px;
 }
 .co-filter-chip.is-selected .co-filter-chip__count {
-  background: rgba(59, 111, 245, 0.14);
+  border-left-color: rgba(59, 111, 245, 0.22);
+  color: var(--co-color-primary-strong);
 }
 
 .co-pagination {
@@ -808,8 +877,8 @@
   gap: 5px;
 }
 .co-pagination button {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   display: inline-grid;
   place-items: center;
   border: 1px solid transparent;
@@ -824,6 +893,19 @@
     background var(--co-motion-fast) var(--co-ease),
     border-color var(--co-motion-fast) var(--co-ease),
     color var(--co-motion-fast) var(--co-ease);
+}
+.co-pagination--sm button {
+  width: 34px;
+  height: 34px;
+}
+.co-pagination button svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .co-pagination button:hover:not(:disabled) {
   border-color: var(--co-color-line-strong);
@@ -848,6 +930,15 @@
   width: 28px;
   color: var(--co-color-subtle);
   text-align: center;
+}
+.co-pagination__summary {
+  min-width: 66px;
+  color: var(--co-color-subtle);
+  font-size: 13px;
+  text-align: center;
+}
+.co-pagination__summary strong {
+  color: var(--co-color-ink);
 }
 
 @media (max-width: 760px) {
@@ -880,8 +971,11 @@
     gap: 2px;
   }
   .co-pagination button {
-    width: 34px;
-    height: 34px;
+    width: 44px;
+    height: 44px;
+  }
+  .co-filter-chip {
+    min-height: 44px;
   }
 }
 

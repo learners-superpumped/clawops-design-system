@@ -44,7 +44,7 @@ ClawOps 제품군에서 공통으로 사용하는 블루 글래스 디자인 시
 npm 배포 전에는 GitHub 태그를 직접 설치할 수 있습니다.
 
 ```bash
-npm install github:learners-superpumped/clawops-design-system#v0.3.0
+npm install github:learners-superpumped/clawops-design-system#v0.4.0
 ```
 
 npm 패키지가 공개된 이후에는 다음 명령을 사용합니다.
@@ -103,6 +103,34 @@ export function Example() {
   );
 }
 ```
+
+### 데이터 탐색
+
+검색, 상태 필터와 페이지 이동은 각각 독립적으로 사용하거나 운영 목록의 툴바로 조합할 수 있습니다.
+
+```tsx
+<SearchField
+  label="통화 검색"
+  value={query}
+  onValueChange={setQuery}
+  placeholder="번호 또는 통화 목적 검색"
+  shortcut="/"
+/>
+
+<FilterBar label="통화 상태 필터">
+  <FilterChip selected count={18}>통화 중</FilterChip>
+  <FilterChip count={42}>완료</FilterChip>
+</FilterBar>
+
+<Pagination
+  page={page}
+  pageCount={12}
+  onPageChange={setPage}
+  siblingCount={1}
+/>
+```
+
+모바일처럼 공간이 좁은 화면에서는 `<Pagination compact />`를 사용합니다. 모든 문구는 `label`, `previousLabel`, `nextLabel`, `getPageLabel`, `clearLabel`, `loadingLabel`로 지역화할 수 있습니다.
 
 ## 구성 원칙
 

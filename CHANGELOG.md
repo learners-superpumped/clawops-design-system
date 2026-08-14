@@ -1,5 +1,14 @@
 # 변경 기록
 
+## 0.4.0
+
+- SearchField에 clear, loading, shortcut hint, size, disabled, icon/content 슬롯과 국제화 레이블 추가
+- FilterBar에 명시적 group semantics, FilterChip에 크기·disabled·focus 상태 추가
+- Pagination에 SVG 아이콘, compact 모드, size, disabled, 국제화와 sibling/boundary 설정 추가
+- 모든 데이터 탐색 컨트롤에 키보드 포커스와 모바일 44px 터치 영역 적용
+- 중간 화면 툴바와 모바일 목록·필터·페이지네이션 레이아웃 개선
+- 검색 및 페이지네이션 상태 예제와 경계값 테스트 추가
+
 ## 0.3.0
 
 - 접근 가능한 `SearchField`, `FilterBar`, `FilterChip`, `Pagination` 추가
