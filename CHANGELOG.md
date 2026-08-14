@@ -1,5 +1,10 @@
 # 변경 기록
 
+## 0.5.3
+
+- Material Drawer 내부를 구성하는 Navigation, Section, Label, Item, Icon, Text, Meta 추가
+- 56px 항목, 22px 아이콘, 활성 pill, 44px 하위 항목과 키보드 포커스 제공
+
 ## 0.5.2
 
 - 큰 메뉴 텍스트와 아이콘을 사용하는 Material Navigation Drawer 변형 추가

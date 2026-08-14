@@ -1,7 +1,13 @@
 "use client";
 
 import * as Dialog from "@radix-ui/react-dialog";
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import { Slot } from "@radix-ui/react-slot";
+import type {
+  ButtonHTMLAttributes,
+  ComponentPropsWithoutRef,
+  HTMLAttributes,
+  ReactNode,
+} from "react";
 
 type DrawerSide = "left" | "right" | "top" | "bottom";
 type DrawerSize = "sm" | "md" | "lg" | "full";
@@ -112,4 +118,69 @@ export function DrawerBody({ className, ...props }: DrawerBodyProps) {
 export type DrawerFooterProps = ComponentPropsWithoutRef<"footer">;
 export function DrawerFooter({ className, ...props }: DrawerFooterProps) {
   return <footer className={cx("co-drawer__footer", className)} {...props} />;
+}
+
+export type DrawerNavigationProps = ComponentPropsWithoutRef<"nav">;
+export function DrawerNavigation({
+  className,
+  ...props
+}: DrawerNavigationProps) {
+  return <nav className={cx("co-drawer-nav", className)} {...props} />;
+}
+
+export type DrawerNavSectionProps = HTMLAttributes<HTMLDivElement>;
+export function DrawerNavSection({
+  className,
+  ...props
+}: DrawerNavSectionProps) {
+  return <div className={cx("co-drawer-nav__section", className)} {...props} />;
+}
+
+export type DrawerNavLabelProps = HTMLAttributes<HTMLParagraphElement>;
+export function DrawerNavLabel({ className, ...props }: DrawerNavLabelProps) {
+  return <p className={cx("co-drawer-nav__label", className)} {...props} />;
+}
+
+export interface DrawerNavItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  active?: boolean;
+  nested?: boolean;
+  asChild?: boolean;
+}
+export function DrawerNavItem({
+  className,
+  active,
+  nested,
+  asChild,
+  type = "button",
+  ...props
+}: DrawerNavItemProps) {
+  const Comp = asChild ? Slot : "button";
+  return (
+    <Comp
+      className={cx(
+        "co-drawer-nav__item",
+        active && "is-active",
+        nested && "co-drawer-nav__item--nested",
+        className,
+      )}
+      aria-current={active ? "page" : undefined}
+      {...(!asChild ? { type } : {})}
+      {...props}
+    />
+  );
+}
+
+export type DrawerNavIconProps = HTMLAttributes<HTMLSpanElement>;
+export function DrawerNavIcon({ className, ...props }: DrawerNavIconProps) {
+  return <span className={cx("co-drawer-nav__icon", className)} {...props} />;
+}
+
+export type DrawerNavTextProps = HTMLAttributes<HTMLSpanElement>;
+export function DrawerNavText({ className, ...props }: DrawerNavTextProps) {
+  return <span className={cx("co-drawer-nav__text", className)} {...props} />;
+}
+
+export type DrawerNavMetaProps = HTMLAttributes<HTMLSpanElement>;
+export function DrawerNavMeta({ className, ...props }: DrawerNavMetaProps) {
+  return <span className={cx("co-drawer-nav__meta", className)} {...props} />;
 }

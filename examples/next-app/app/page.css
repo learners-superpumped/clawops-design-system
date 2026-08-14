@@ -1251,18 +1251,6 @@ svg {
     align-content: start;
     gap: 28px;
   }
-  .mobile-navigation-panel nav {
-    display: grid;
-    gap: 8px;
-  }
-  .mobile-navigation-panel strong {
-    color: #8491a3;
-    font-size: 9px;
-    letter-spacing: 0.1em;
-  }
-  .mobile-navigation-panel a {
-    font-size: 13px;
-  }
   .docs-layout {
     display: block;
   }

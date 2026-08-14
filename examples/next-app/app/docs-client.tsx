@@ -5,9 +5,14 @@ import { createPortal } from "react-dom";
 import {
   Badge,
   Drawer,
-  DrawerBody,
   DrawerContent,
   DrawerHeader,
+  DrawerNavIcon,
+  DrawerNavItem,
+  DrawerNavLabel,
+  DrawerNavigation,
+  DrawerNavSection,
+  DrawerNavText,
   DrawerTitle,
   DrawerTrigger,
   FilterBar,
@@ -335,18 +340,29 @@ export function MobileNavigation({
         <DrawerHeader>
           <DrawerTitle>컴포넌트 둘러보기</DrawerTitle>
         </DrawerHeader>
-        <DrawerBody>
+        <DrawerNavigation aria-label="문서 메뉴">
           {navigation.map((group) => (
-            <nav key={group.title}>
-              <strong>{group.title}</strong>
+            <DrawerNavSection key={group.title}>
+              <DrawerNavLabel>{group.title}</DrawerNavLabel>
               {group.items.map(([label, href]) => (
-                <a href={href} key={href} onClick={() => setOpen(false)}>
-                  {label}
-                </a>
+                <DrawerNavItem
+                  asChild
+                  active={href === "#introduction"}
+                  key={href}
+                >
+                  <a href={href} onClick={() => setOpen(false)}>
+                    <DrawerNavIcon>
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 5.5h14v13H5zM8.5 9h7M8.5 12h7M8.5 15h4" />
+                      </svg>
+                    </DrawerNavIcon>
+                    <DrawerNavText>{label}</DrawerNavText>
+                  </a>
+                </DrawerNavItem>
               ))}
-            </nav>
+            </DrawerNavSection>
           ))}
-        </DrawerBody>
+        </DrawerNavigation>
       </DrawerContent>
     </Drawer>
   );

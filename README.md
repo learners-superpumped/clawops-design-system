@@ -44,7 +44,7 @@ ClawOps 제품군에서 공통으로 사용하는 블루 글래스 디자인 시
 npm 배포 전에는 GitHub 태그를 직접 설치할 수 있습니다.
 
 ```bash
-npm install github:learners-superpumped/clawops-design-system#v0.5.2
+npm install github:learners-superpumped/clawops-design-system#v0.5.3
 ```
 
 npm 패키지가 공개된 이후에는 다음 명령을 사용합니다.
