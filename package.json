@@ -1,6 +1,6 @@
 {
   "name": "@teamlearners/clawops-design-system",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "ClawOps blue glass design system for React and Next.js applications",
   "license": "MIT",
   "type": "module",
