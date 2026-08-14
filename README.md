@@ -2,6 +2,41 @@
 
 ClawOps 제품군에서 공통으로 사용하는 블루 글래스 디자인 시스템입니다. React 18과 19를 지원하며 Next.js에 종속되지 않습니다.
 
+## 미리보기
+
+토큰과 컴포넌트를 실제 ClawOps 제품 화면에 가까운 상태로 확인할 수 있는 Next.js 카탈로그를 함께 제공합니다.
+
+![ClawOps Design System 데스크톱 개요](./assets/screenshots/overview-desktop.png)
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="./assets/screenshots/components-desktop.png" alt="버튼과 액션 컴포넌트" />
+      <br />
+      <strong>컴포넌트와 상태</strong>
+    </td>
+    <td width="50%">
+      <img src="./assets/screenshots/interaction-desktop.png" alt="탭과 아코디언 인터랙션" />
+      <br />
+      <strong>접근 가능한 인터랙션</strong>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img src="./assets/screenshots/motion-desktop.png" alt="ClawOps 모션 시스템" />
+      <br />
+      <strong>의미가 있는 모션</strong>
+    </td>
+    <td width="50%" align="center">
+      <img src="./assets/screenshots/overview-mobile.png" width="260" alt="모바일 반응형 화면" />
+      <br />
+      <strong>모바일 반응형</strong>
+    </td>
+  </tr>
+</table>
+
+로컬에서 전체 카탈로그를 실행하려면 아래의 [저장소 구조](#저장소-구조)를 참고하세요.
+
 ## 설치
 
 npm 배포 전에는 GitHub 태그를 직접 설치할 수 있습니다.
@@ -71,7 +106,9 @@ export function Example() {
 
 - `tokens.css`: 색상, 간격, 모서리, 그림자, 타이포, 모션의 단일 기준
 - `styles.css`: 프레임워크에 의존하지 않는 컴포넌트 스타일
-- React primitives: Button, Card, Badge, Field, Input, Textarea, SectionHeading, Container, Stack, Inline, Grid, Ambient
+- React primitives: Button, IconButton, Card, Badge, Field, Input, Textarea, SectionHeading, Container, Stack, Inline, Grid, Ambient
+- Interactive components: Tabs, Switch, Accordion, Tooltip
+- Feedback and data display: Callout, Avatar, Progress, Skeleton, Spinner, Separator, Stat
 - 모든 클래스는 `co-` 접두사를 사용해 기존 프로젝트 CSS와 충돌하지 않습니다.
 - 색상이나 간격을 제품별로 바꿀 때는 컴포넌트를 포크하지 않고 `--co-*` 토큰을 덮어씁니다.
 - 모션 감소 환경과 키보드 포커스를 기본 지원합니다.
@@ -82,6 +119,7 @@ export function Example() {
 src/                  패키지 소스와 디자인 토큰
 tests/                컴포넌트 렌더링 계약 테스트
 examples/next-app/    Next.js App Router 통합 예제
+assets/screenshots/   README와 릴리스용 실제 렌더링 캡처
 .github/workflows/    Node 20·22 CI와 npm 릴리스
 ```
 
